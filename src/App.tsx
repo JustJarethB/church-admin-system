@@ -1,33 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+import { getAuth, } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 import viteLogo from '/vite.svg'
 import './App.css'
+import firebaseConfig from './firebaseConfig'
+import { SignIn } from './SignIn';
+import { SignOut } from './SignOut';
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [user] = useAuthState(auth);
+  if (!user) return <SignIn auth={auth} />
   return (
     <>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <SignOut auth={auth} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
