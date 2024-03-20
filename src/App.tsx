@@ -21,14 +21,10 @@ function App() {
   const [user] = useAuthState(auth);
   if (!user) return <SignIn auth={auth} />
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <SignOut auth={auth} />
-      </div>
-    </>
+    <div>
+      <p>Welcome, {user.displayName}</p>
+      <SignOut auth={auth} />
+    </div>
   )
 }
 
