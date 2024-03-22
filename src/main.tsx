@@ -2,11 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const root = document.getElementById("root")!;
+ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <div className="bg-slate-900 text-slate-100 min-h-screen p-2">
+    <div className="bg-neutral text-neutral-contrast min-h-screen p-2">
       <App />
     </div>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
+const debugBorders = () => {
+  const style = document.createElement("style");
+  style.innerText = `* {border: 1px solid #FF00FF !important; }`;
+  document.head.appendChild(style);
+};
+import.meta.env.DEV &&
+  import.meta.env.VITE_debug_borders.match(/true/i) &&
+  debugBorders();

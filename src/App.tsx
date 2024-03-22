@@ -5,7 +5,6 @@ import { getFirestore } from "firebase/firestore";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import viteLogo from "/vite.svg";
 import "./App.css";
 import firebaseConfig from "./firebaseConfig";
 import { SignIn } from "./SignIn";
