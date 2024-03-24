@@ -15,7 +15,7 @@ export const SignIn = ({ auth }: SignInProps) => {
   return (
     <div className="flex min-h-screen items-center justify-center">
       <div className="absolute top-0 h-1/4 w-full flex justify-center items-center p-8">
-        <Logo />
+        <Logo color="secondary" />
       </div>
       <div className="absolute bottom-0 flex h-3/4 w-full flex-col rounded-t-3xl bg-black bg-opacity-20 shadow">
         {/* <UsernameAndPassForm /> */}

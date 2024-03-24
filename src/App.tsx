@@ -9,6 +9,7 @@ import "./App.css";
 import firebaseConfig from "./firebaseConfig";
 import { SignIn } from "./SignIn";
 import { SignOut } from "./SignOut";
+import { Page } from "./components";
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
@@ -19,11 +20,10 @@ function App() {
   const [user] = useAuthState(auth);
   if (!user) return <SignIn auth={auth} />;
   return (
-    <div>
+    <Page className="flex flex-col justify-between h-full">
       <p>Welcome, {user.displayName}</p>
       <SignOut auth={auth} />
-    </div>
+    </Page>
   );
 }
-
 export default App;
