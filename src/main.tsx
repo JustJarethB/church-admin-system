@@ -16,5 +16,5 @@ const debugBorders = () => {
   document.head.appendChild(style);
 };
 import.meta.env.DEV &&
-  import.meta.env.VITE_debug_borders.match(/true/i) &&
+  import.meta.env.VITE_debug_borders?.match(/true/i) &&
   debugBorders();
