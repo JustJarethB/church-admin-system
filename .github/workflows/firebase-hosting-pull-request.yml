@@ -7,14 +7,14 @@ permissions:
   checks: write
   contents: read
   pull-requests: write
-env: 
-  VITE_apiKey=${{ vars.FIREBASE_API_KEY }}
-  VITE_authDomain=${{ vars.FIREBASE_AUTH_DOMAIN }}
-  VITE_projectId=${{ vars.FIREBASE_PROJECT_ID }}
-  VITE_storageBucket=${{ vars.FIREBASE_STORAGE_BUCKET }}
-  VITE_messagingSenderId=${{ vars.FIREBASE_MESSAGING_SENDER_ID }}
-  VITE_appId=${{ vars.FIREBASE_APP_ID }}
-  VITE_measurementId=${{ vars.FIREBASE_MEASUREMENT_ID }}
+env:
+  VITE_apiKey: ${{ vars.FIREBASE_API_KEY }}
+  VITE_authDomain: ${{ vars.FIREBASE_AUTH_DOMAIN }}
+  VITE_projectId: ${{ vars.FIREBASE_PROJECT_ID }}
+  VITE_storageBucket: ${{ vars.FIREBASE_STORAGE_BUCKET }}
+  VITE_messagingSenderId: ${{ vars.FIREBASE_MESSAGING_SENDER_ID }}
+  VITE_appId: ${{ vars.FIREBASE_APP_ID }}
+  VITE_measurementId: ${{ vars.FIREBASE_MEASUREMENT_ID }}
 jobs:
   build_and_preview:
     if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
