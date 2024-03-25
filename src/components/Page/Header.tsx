@@ -1,5 +1,5 @@
 import { Bars3Icon } from "@heroicons/react/24/solid";
-import { Logo } from "..";
+import { Logo } from "@/components";
 import { twMerge } from "tailwind-merge";
 
 export const Header = (props: JSX.IntrinsicElements["div"]) => {

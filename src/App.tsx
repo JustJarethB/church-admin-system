@@ -2,9 +2,8 @@ import { initializeApp } from "firebase/app";
 
 import "./App.css";
 import firebaseConfig from "./firebaseConfig";
-import { SignIn } from "./SignIn";
-import { useCurrentUser } from "./api";
-import { ProfileSelection } from "./ProfileSelection";
+import { useCurrentUser } from "@/api";
+import { SignIn, ProfileSelection } from "@/pages";
 
 const app = initializeApp(firebaseConfig);
 

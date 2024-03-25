@@ -1,7 +1,7 @@
-import { SignOut } from "../SignOut";
-import { Page } from "../components";
-import { ProfileSelector } from "../components/ProfileSelector";
-import { useCurrentUser, useUserProfiles } from "../api";
+import { SignOut } from "@/SignOut";
+import { Page } from "@/components";
+import { ProfileSelector } from "@/components/ProfileSelector";
+import { useCurrentUser, useUserProfiles } from "@/api";
 
 export const ProfileSelection = () => {
   const [user] = useCurrentUser();

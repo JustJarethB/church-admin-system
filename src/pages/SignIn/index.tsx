@@ -3,10 +3,10 @@ import {
   useSignInWithApple,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { Button, Logo } from "../components";
-import appleLogo from "../assets/Apple_logo_black.svg";
-import googleLogo from "../assets/google_24px.svg";
-import { createProfile, getUserHasProfile } from "../api";
+import { Button, Logo } from "@/components";
+import appleLogo from "@/assets/Apple_logo_black.svg";
+import googleLogo from "@/assets/google_24px.svg";
+import { createProfile, getUserHasProfile } from "@/api";
 import { UserCredential, getAuth } from "firebase/auth";
 
 export const SignIn = () => {

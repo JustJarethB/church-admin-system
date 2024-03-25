@@ -1,5 +1,5 @@
 /// <reference types="vite-plugin-svgr/client" />
-import LogoSVG from "../assets/IAW.svg?react";
+import LogoSVG from "@/assets/IAW.svg?react";
 type LogoProps = {
   color: "primary" | "secondary" | "white" | "black";
 };

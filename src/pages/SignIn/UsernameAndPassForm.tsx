@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Input } from "../components/Form";
-import { Button, Popup } from "../components";
+import { Input } from "@/components/Form";
+import { Button, Popup } from "@/components";
 
 export const UsernameAndPassForm = () => {
   const [open, setOpen] = useState(false);

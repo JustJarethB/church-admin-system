@@ -1,5 +1,5 @@
 import { PlusIcon } from "@heroicons/react/24/solid";
-import { Profile, useChurchFromProfile } from "../../api";
+import { Profile, useChurchFromProfile } from "@/api";
 export type ProfileSelectionProps = {
   profile: Profile | undefined;
 };
