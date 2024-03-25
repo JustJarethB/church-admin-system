@@ -1,8 +1,8 @@
-import { Auth } from "@firebase/auth";
 import { Button } from "./components";
+import { getAuth } from "firebase/auth";
 
-type SignInProps = { auth: Auth };
-export const SignOut = ({ auth }: SignInProps) => {
+export const SignOut = () => {
+  const auth = getAuth();
   const signOut = () => auth.signOut();
   if (!auth.currentUser) return <></>;
   return <Button onClick={signOut}>Sign Out</Button>;

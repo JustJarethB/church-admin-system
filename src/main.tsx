@@ -5,8 +5,10 @@ import "./index.css";
 const root = document.getElementById("root")!;
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <div className="bg-neutral text-neutral-contrast h-screen">
-      <App />
+    <div className="max-w-96 mx-auto">
+      <div className="bg-neutral text-neutral-contrast min-h-screen">
+        <App />
+      </div>
     </div>
   </React.StrictMode>
 );
