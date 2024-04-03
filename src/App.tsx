@@ -17,6 +17,7 @@ initializeApp(firebaseConfig);
 const router = createBrowserRouter([
   {
     element: <UnauthenticatedOnly />,
+    errorElement: <Error404 />,
     children: [
       {
         path: "/signin",
@@ -35,9 +36,6 @@ const router = createBrowserRouter([
         ],
       },
     ],
-  },
-  {
-    errorElement: <Error404 />,
   },
 ]);
 
