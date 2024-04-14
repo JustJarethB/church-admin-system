@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 
 import "./App.css";
 import firebaseConfig from "./firebaseConfig";
-import { SignIn, ProfileSelection } from "@/pages";
+import { SignIn, ProfileSelection, Church, TeamsModal } from "@/pages";
 import {
   createBrowserRouter,
   Navigate,
@@ -32,6 +32,11 @@ const router = createBrowserRouter([
         element: <RouterPage />,
         children: [
           { path: "/", element: <Navigate to={"/profiles"} /> },
+          {
+            path: "/church",
+            element: <Church />,
+            children: [{ path: "teams/:id", element: <TeamsModal /> }],
+          },
           { path: "/profiles", element: <ProfileSelection /> },
         ],
       },

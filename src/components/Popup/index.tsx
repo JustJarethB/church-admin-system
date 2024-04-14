@@ -1,11 +1,23 @@
 import { PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
 
-import { XCircleIcon } from "@heroicons/react/24/solid";
+import { XMarkIcon } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
 type PopupProps = {
   open?: boolean;
   handleClose?: () => void;
 };
+
+export const PopupRoute = ({ children }: PropsWithChildren<object>) => {
+  const navigate = useNavigate();
+
+  return (
+    <Popup open handleClose={() => navigate(-1)}>
+      {children}
+    </Popup>
+  );
+};
+
 export const Popup = ({
   open,
   handleClose,
@@ -16,8 +28,8 @@ export const Popup = ({
     <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 backdrop-blur flex items-center justify-center p-2">
       <div className="bg-neutral text-neutral-contrast rounded w-full min-h-12">
         <div className="w-full grid justify-end p-2 ">
-          <XCircleIcon
-            className="text-error hover:text-error-dark h-8"
+          <XMarkIcon
+            className="text-error border-error border rounded-full p-0.5 hover:text-error-dark h-8"
             onClick={handleClose}
           />
         </div>
