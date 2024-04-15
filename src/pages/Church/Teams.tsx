@@ -1,4 +1,4 @@
-import { PopupRoute } from "@/components";
+import { RoutedPopup } from "@/components";
 import { useParams } from "react-router-dom";
 import { PLACEHOLDER_CHURCH } from "@/data";
 
@@ -7,7 +7,7 @@ export const TeamsModal = () => {
   const { id } = useParams();
   const team = church.teams[id as keyof typeof church.teams];
   return (
-    <PopupRoute>
+    <RoutedPopup>
       <h2>{team.displayName}</h2>
       {team.people.map((userId) => {
         return (
@@ -16,6 +16,6 @@ export const TeamsModal = () => {
           </p>
         );
       })}
-    </PopupRoute>
+    </RoutedPopup>
   );
 };

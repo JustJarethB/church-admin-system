@@ -5,19 +5,20 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 
 export * from "./Routed";
 
-type PopupProps = {
+export type PopupProps = PropsWithChildren<{
   open?: boolean;
   handleClose?: () => void;
-};
+  captive?: boolean;
+}>;
 
-export const Popup = ({
-  open,
-  handleClose,
-  children,
-}: PropsWithChildren<PopupProps>) => {
+export const Popup = ({ open, handleClose, children, captive }: PopupProps) => {
+  const handleBackdropClick = () => captive || handleClose?.();
   if (!open) return <></>;
   return createPortal(
-    <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 backdrop-blur flex items-center justify-center p-2">
+    <div
+      onClick={handleBackdropClick}
+      className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 backdrop-blur flex items-center justify-center p-2"
+    >
       <div className="bg-neutral text-neutral-contrast rounded w-full min-h-12">
         <div className="w-full grid justify-end p-2 ">
           <XMarkIcon

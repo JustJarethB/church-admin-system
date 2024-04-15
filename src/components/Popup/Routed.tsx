@@ -1,8 +1,9 @@
-import { PropsWithChildren } from "react";
 import { useNavigate } from "react-router-dom";
-import { Popup } from ".";
+import { Popup, PopupProps } from ".";
 
-export const PopupRoute = ({ children }: PropsWithChildren<object>) => {
+type RoutedPopupProps = Omit<PopupProps, "open" | "handleClose">;
+
+export const RoutedPopup = ({ children }: RoutedPopupProps) => {
   const navigate = useNavigate();
 
   return (
