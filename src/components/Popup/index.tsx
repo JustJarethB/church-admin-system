@@ -11,8 +11,16 @@ export type PopupProps = PropsWithChildren<{
   captive?: boolean;
 }>;
 
-export const Popup = ({ open, handleClose, children, captive }: PopupProps) => {
-  const handleBackdropClick = () => captive || handleClose?.();
+export const Popup = (props: PopupProps) => {
+  const { open, handleClose, children, captive } = props;
+  const handleBackdropClick: React.MouseEventHandler<HTMLDivElement> = ({
+    currentTarget,
+    target,
+  }) => {
+    if (captive) return;
+    if (currentTarget !== target) return;
+    handleClose?.();
+  };
   if (!open) return <></>;
   return createPortal(
     <div
