@@ -2,20 +2,12 @@ import { PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
 
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import { useNavigate } from "react-router-dom";
+
+export * from "./Routed";
+
 type PopupProps = {
   open?: boolean;
   handleClose?: () => void;
-};
-
-export const PopupRoute = ({ children }: PropsWithChildren<object>) => {
-  const navigate = useNavigate();
-
-  return (
-    <Popup open handleClose={() => navigate(-1)}>
-      {children}
-    </Popup>
-  );
 };
 
 export const Popup = ({
