@@ -7,8 +7,7 @@ export const TeamsModal = () => {
   const { id } = useParams();
   const team = church.teams[id as keyof typeof church.teams];
   return (
-    <RoutedPopup>
-      <h2>{team.displayName}</h2>
+    <RoutedPopup title={team.displayName}>
       {team.people.map((userId) => {
         return (
           <p key={userId} className="px-2 border rounded-full">
