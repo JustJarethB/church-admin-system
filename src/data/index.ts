@@ -64,3 +64,24 @@ export const PLACEHOLDER_CHURCH = {
     },
   },
 };
+export const PLACEHOLDER_USERS = [
+  {
+    photoURL: null,
+    displayName: null,
+    email: null,
+    uid: "JX3bwGJcFcWmZf6gm7NEtb03S373",
+  },
+  {
+    photoURL:
+      "https://lh3.googleusercontent.com/a/ACg8ocIoeyqbCaw2w3rpDOaWCFqBx8gICDHF417dlEuFPeVMBxo=s96-c",
+    displayName: "Jareth Bower",
+    email: "justjarethb@gmail.com",
+    uid: "EXHxjvaEzIW87dm2bN0Ow1WleZh2",
+  },
+  {
+    photoURL: null,
+    displayName: null,
+    email: null,
+    uid: "5B5doOYCkwdaW8c2olMLXOKdUn12",
+  },
+];

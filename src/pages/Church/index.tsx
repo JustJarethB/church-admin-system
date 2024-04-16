@@ -1,7 +1,7 @@
 import { PLACEHOLDER_CHURCH } from "@/data";
-import { Link, LinkProps, Outlet } from "react-router-dom";
-import { Section } from "@/components/Section";
-import { ProfileImage } from "@/components/ProfileImage";
+import { Outlet } from "react-router-dom";
+import { Section, ProfileImage } from "@/components";
+import { Row } from "./utils";
 export * from "./Teams";
 export const Church = () => {
   const church = PLACEHOLDER_CHURCH;
@@ -44,7 +44,3 @@ export const Church = () => {
     </div>
   );
 };
-
-const Row = (props: LinkProps) => (
-  <Link {...props} className="flex justify-between" />
-);
