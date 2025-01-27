@@ -1,4 +1,3 @@
-import { signInAnonymously } from "@firebase/auth";
 import {
   useSignInWithApple,
   useSignInWithGoogle,
@@ -7,7 +6,7 @@ import { Button, Logo } from "@/components";
 import appleLogo from "@/assets/Apple_logo_black.svg";
 import googleLogo from "@/assets/google_24px.svg";
 import { createProfile, getUserHasProfile } from "@/api";
-import { UserCredential, getAuth } from "firebase/auth";
+import { UserCredential, getAuth, signInAnonymously } from "firebase/auth";
 
 export const SignIn = () => {
   const auth = getAuth();
