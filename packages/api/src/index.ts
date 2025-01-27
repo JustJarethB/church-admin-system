@@ -1,5 +1,7 @@
+import $ from 'zod'
 import { initTRPC } from '@trpc/server';
-import { z } from 'zod'
+import { mock as mockProfile, profile } from './profile'
+import { mock as mockChurch } from './church'
 /**
  * Initialization of tRPC backend
  * Should be done only once per backend!
@@ -14,7 +16,11 @@ const t = initTRPC.create();
 export const publicProcedure = t.procedure;
 
 export const router = t.router({
-    hello: publicProcedure.input(z.string()).query(({ input }) => `Hello ${input}`)
+    ping: publicProcedure.query(() => `pong`),
+    userProfiles: publicProcedure.query(() => [mockProfile]),
+    userHasProfile: publicProcedure.input($.string()).query(({ input }) => input == mockProfile.userId),
+    churches: publicProcedure.query(() => [mockChurch]),
+    churchOfProfile: publicProcedure.input(profile.pick({ churchId: true })).query(() => mockChurch)
 });
 
 // Export type router type signature,

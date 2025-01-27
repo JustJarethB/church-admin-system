@@ -1,7 +1,6 @@
-import { initializeApp } from "firebase/app";
-
+import { httpBatchLink } from '@trpc/client'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import "./App.css";
-import firebaseConfig from "./firebaseConfig";
 import { SignIn, ProfileSelection, Church, TeamsModal } from "@/pages";
 import {
   createBrowserRouter,
@@ -10,11 +9,9 @@ import {
 } from "react-router-dom";
 import { UnauthenticatedOnly, AuthenticatedOnly, RouterPage } from "@/router";
 import { Error404 } from "./pages/404";
-import { useEffect } from "react";
-import { hello } from "./api";
+import { useState } from "react";
+import { trpc } from "./api";
 
-// side-effect
-initializeApp(firebaseConfig);
 
 const router = createBrowserRouter([
   {
@@ -47,9 +44,23 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  useEffect(() => {
-    hello('Frontend').then(console.log)
-  })
-  return <RouterProvider router={router} />;
+
+  const [queryClient] = useState(() => new QueryClient());
+  const [trpcClient] = useState(() =>
+    trpc.createClient({
+      links: [
+        httpBatchLink({
+          url: 'http://localhost:3000/trpc',
+        }),
+      ],
+    }),
+  );
+  return (
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />;
+      </QueryClientProvider>
+    </trpc.Provider>
+  )
 }
 export default App;
