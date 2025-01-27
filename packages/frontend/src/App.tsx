@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import { UnauthenticatedOnly, AuthenticatedOnly, RouterPage } from "@/router";
 import { Error404 } from "./pages/404";
+import { useEffect } from "react";
+import { hello } from "./api";
 
 // side-effect
 initializeApp(firebaseConfig);
@@ -45,6 +47,9 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  useEffect(() => {
+    hello('Frontend').then(console.log)
+  })
   return <RouterProvider router={router} />;
 }
 export default App;
