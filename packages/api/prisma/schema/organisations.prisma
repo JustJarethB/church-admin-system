@@ -1,5 +1,5 @@
 model Organisations {
-    id          String   @id @default(cuid())
+    id          String     @id @db.Uuid
     name        String
     description String?
     creator     Users    @relation(fields: [creatorId], references: [id])

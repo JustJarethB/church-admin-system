@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "public"."organisations" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
     "creatorId" UUID NOT NULL,
