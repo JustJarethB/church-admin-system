@@ -1,0 +1,31 @@
+model Profiles {
+    id             String        @id @db.Uuid
+    createdAt      DateTime      @default(now())
+    updatedAt      DateTime      @updatedAt
+    user           Users         @relation("ProfileUser", fields: [userId], references: [id])
+    userId         String        @db.Uuid
+    organisation   Organisations @relation(fields: [organisationId], references: [id])
+    organisationId String        @db.Uuid
+    teams          Teams[]
+    creator        Users         @relation("ProfileCreator", fields: [creatorId], references: [id])
+    creatorId      String        @db.Uuid
+    permissions    String[]
+
+    @@unique([userId, organisationId])
+    @@schema("public")
+}
+
+model Teams {
+    id             String        @id @db.Uuid
+    createdAt      DateTime      @default(now())
+    updatedAt      DateTime      @updatedAt
+    name           String
+    description    String?
+    organisation   Organisations @relation(fields: [organisationId], references: [id])
+    organisationId String        @db.Uuid
+    creator        Users         @relation(fields: [creatorId], references: [id])
+    creatorId      String        @db.Uuid
+    Profiles       Profiles[]
+
+    @@schema("public")
+}
