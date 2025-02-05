@@ -1,5 +1,5 @@
 import { initTRPC } from '@trpc/server';
-import { Context } from '../db/context';
+import { Context } from '../context';
 
 /**
  * Initialization of tRPC backend

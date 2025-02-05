@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^6.3.0",
+    "@supabase/supabase-js": "^2.48.1",
     "@trpc/client": "11.0.0-rc.730",
     "@trpc/server": "11.0.0-rc.730",
     "zod": "^3.24.1"
