@@ -1,7 +1,7 @@
-import { CreateHTTPContextOptions } from '@trpc/server/adapters/standalone';
+import { CreateExpressContextOptions } from '@trpc/server/adapters/express';
 import { prisma } from './db';
 import { supabase } from './supabase';
-export const createContext = async (opts: CreateHTTPContextOptions) => ({
+export const createContext = async (opts: CreateExpressContextOptions) => ({
     prisma,
     auth: {
         user: {
@@ -9,6 +9,6 @@ export const createContext = async (opts: CreateHTTPContextOptions) => ({
             email: "hello@example.com"
         }
     },
-    supabase
+    supabase,
 })
 export type Context = Awaited<ReturnType<typeof createContext>>;
