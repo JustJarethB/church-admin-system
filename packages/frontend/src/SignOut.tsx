@@ -1,3 +1,4 @@
+import { useAuth } from "./AuthProvider";
 import { Button } from "./components";
 
 export const SignOut = () => {
@@ -5,7 +6,7 @@ export const SignOut = () => {
     currentUser: true,
     signOut: () => alert('unimplemented')
   };
-  const signOut = () => auth.signOut();
+  const { signOut } = useAuth()
   if (!auth.currentUser) return <></>;
   return <Button onClick={signOut}>Sign Out</Button>;
 };

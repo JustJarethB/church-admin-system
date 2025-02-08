@@ -1,16 +1,16 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useCurrentUser } from "@/api";
 import { Page } from "@/components";
+import { useAuth } from "./AuthProvider";
 
 export const AuthenticatedOnly = () => {
-  const [user] = useCurrentUser();
+  const { user } = useAuth()
   if (!user) return <Navigate to={"/signin"} />;
-  return <Outlet />;
+  return <Outlet />
 };
 export const UnauthenticatedOnly = () => {
-  const [user] = useCurrentUser();
+  const { user } = useAuth()
   if (user) return <Navigate to={"/"} />;
-  return <Outlet />;
+  return <Outlet />
 };
 
 export const RouterPage = () => (

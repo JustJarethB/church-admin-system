@@ -11,6 +11,7 @@ import { UnauthenticatedOnly, AuthenticatedOnly, RouterPage } from "@/router";
 import { Error404 } from "./pages/404";
 import { useState } from "react";
 import { trpc } from "./api";
+import AuthProvider from './AuthProvider';
 
 
 const router = createBrowserRouter([
@@ -56,11 +57,13 @@ function App() {
     }),
   );
   return (
-    <trpc.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />;
-      </QueryClientProvider>
-    </trpc.Provider>
+    <AuthProvider>
+      <trpc.Provider client={trpcClient} queryClient={queryClient}>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />;
+        </QueryClientProvider>
+      </trpc.Provider>
+    </AuthProvider>
   )
 }
 export default App;
