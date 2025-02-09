@@ -11,11 +11,11 @@ const t = initTRPC.context<Context>().create();
  * that can be used throughout the router
  */
 export const router = t.router;
-
 export const publicProcedure = t.procedure;
 export const privateProcedure = t.procedure.use((opts) => {
+    type AssertedOps = typeof opts & { ctx: { auth: NonNullable<typeof opts.ctx.auth> } };
     if (!opts.ctx.auth) {
         throw new Error('Unauthorized');
     }
-    return opts.next();
+    return opts.next(opts as AssertedOps);
 })  

@@ -2,12 +2,12 @@ model Profiles {
     id             String        @id @db.Uuid
     createdAt      DateTime      @default(now())
     updatedAt      DateTime      @updatedAt
-    user           Users         @relation("ProfileUser", fields: [userId], references: [id])
+    user           AppUsers      @relation("ProfileUser", fields: [userId], references: [id])
     userId         String        @db.Uuid
     organisation   Organisations @relation(fields: [organisationId], references: [id])
     organisationId String        @db.Uuid
     teams          Teams[]
-    creator        Users         @relation("ProfileCreator", fields: [creatorId], references: [id])
+    creator        AppUsers      @relation("ProfileCreator", fields: [creatorId], references: [id])
     creatorId      String        @db.Uuid
     permissions    String[]
 
@@ -23,7 +23,7 @@ model Teams {
     description    String?
     organisation   Organisations @relation(fields: [organisationId], references: [id])
     organisationId String        @db.Uuid
-    creator        Users         @relation(fields: [creatorId], references: [id])
+    creator        AppUsers      @relation(fields: [creatorId], references: [id])
     creatorId      String        @db.Uuid
     Profiles       Profiles[]
 
