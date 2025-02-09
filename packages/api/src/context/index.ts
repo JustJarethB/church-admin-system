@@ -10,7 +10,7 @@ export const createContext = async ({ info, req, res }: CreateExpressContextOpti
     return ({
         prisma,
         supabase,
-        auth: token ? authorizeToken(token) : null,
+        auth: token ? await authorizeToken(token) : null,
     });
 }
 export type Context = Awaited<ReturnType<typeof createContext>>;
