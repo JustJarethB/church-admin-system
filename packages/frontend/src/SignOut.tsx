@@ -1,4 +1,4 @@
-import { useAuth } from "./AuthProvider";
+import { useAuth } from "./providers/AuthProvider";
 import { Button } from "./components";
 
 export const SignOut = () => {

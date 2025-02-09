@@ -11,7 +11,7 @@ import { UnauthenticatedOnly, AuthenticatedOnly, RouterPage } from "@/router";
 import { Error404 } from "./pages/404";
 import { useState } from "react";
 import { trpc } from "./api";
-import AuthProvider from './AuthProvider';
+import AuthProvider from './providers/AuthProvider';
 
 
 const router = createBrowserRouter([

@@ -1,15 +1,17 @@
-import { Session, User } from '@supabase/supabase-js';
+import { Provider, Session, User } from '@supabase/supabase-js';
 import { createContext, useState, useEffect, useContext, PropsWithChildren } from 'react';
-import { supabase } from './api';
+import { supabase } from '../api';
 
 type Context = {
     user: User | null;
-    signIn: () => Promise<unknown>
+    session: Session | null;
+    signIn: (provider?: Provider) => Promise<unknown>
     signOut: () => Promise<unknown>
 };
 
 const AuthContext = createContext<Context>({
     user: null,
+    session: null,
     signIn: function (): Promise<unknown> {
         throw new Error('Function not implemented.');
     },
@@ -41,10 +43,9 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
         };
     }, []);
 
-    // In case we want to manually trigger a signIn (instead of using Auth UI)
-    const signIn = async () => {
+    const signIn = async (provider: Provider = 'github') => {
         const { data, error } = await supabase.auth.signInWithOAuth({
-            provider: 'github',
+            provider,
             options: { skipBrowserRedirect: false },
         });
         console.log('data: ', data);
@@ -63,7 +64,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, signIn, signOut }}>
+        <AuthContext.Provider value={{ user, signIn, signOut, session }}>
             {!loading ? children : `<div>Loading...</div>`}
         </AuthContext.Provider>
     );

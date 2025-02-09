@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { Page } from "@/components";
-import { useAuth } from "./AuthProvider";
+import { useAuth } from "./providers/AuthProvider";
 
 export const AuthenticatedOnly = () => {
   const { user } = useAuth()
