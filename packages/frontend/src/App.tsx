@@ -9,9 +9,9 @@ import {
 } from "react-router-dom";
 import { UnauthenticatedOnly, AuthenticatedOnly, RouterPage } from "@/router";
 import { Error404 } from "./pages/404";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { trpc } from "./api";
-import AuthProvider from './providers/AuthProvider';
+import AuthProvider, { useAuth } from './providers/AuthProvider';
 
 
 const router = createBrowserRouter([
@@ -43,27 +43,43 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
+export const withAuth = (Component: React.FC) => () => {
+  return <AuthProvider><Component /></AuthProvider>
+}
 function App() {
-
+  const { session } = useAuth()
   const [queryClient] = useState(() => new QueryClient());
-  const [trpcClient] = useState(() =>
+  const [trpcClient, setTrpcClient] = useState(() =>
     trpc.createClient({
       links: [
         httpBatchLink({
           url: 'http://localhost:3000/trpc',
+          // headers: {
+          //   "authorization": `${session?.token_type} ${session?.access_token}`
+          // }
         }),
       ],
     }),
   );
+  useEffect(() => {
+    setTrpcClient(() => trpc.createClient({
+      links: [
+        httpBatchLink({
+          url: 'http://localhost:3000/trpc',
+          headers: session ? {
+            "authorization": `${session.token_type} ${session.access_token}`
+          } : undefined
+        }),
+      ],
+    }))
+  }, [session])
+
   return (
-    <AuthProvider>
-      <trpc.Provider client={trpcClient} queryClient={queryClient}>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />;
-        </QueryClientProvider>
-      </trpc.Provider>
-    </AuthProvider>
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />;
+      </QueryClientProvider>
+    </trpc.Provider>
   )
 }
-export default App;
+export default withAuth(App);

@@ -7,4 +7,4 @@ if (!SUPABASE_URL) {
 if (!SUPABASE_SERVICE) {
     throw new Error('Missing environment variables. Required: SUPABASE_SERVICE')
 }
-export const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE)
+export const supabase = (token = SUPABASE_SERVICE) => createClient(SUPABASE_URL, token)
