@@ -10,7 +10,7 @@ import {
 import { UnauthenticatedOnly, AuthenticatedOnly, RouterPage } from "@/router";
 import { Error404 } from "./pages/404";
 import { useEffect, useState } from "react";
-import { trpc } from "./api";
+import { api } from "./api";
 import AuthProvider, { useAuth } from './providers/AuthProvider';
 
 
@@ -50,7 +50,7 @@ function App() {
   const { session } = useAuth()
   const [queryClient] = useState(() => new QueryClient());
   const [trpcClient, setTrpcClient] = useState(() =>
-    trpc.createClient({
+    api.createClient({
       links: [
         httpBatchLink({
           url: 'http://localhost:3000/trpc',
@@ -62,7 +62,7 @@ function App() {
     }),
   );
   useEffect(() => {
-    setTrpcClient(() => trpc.createClient({
+    setTrpcClient(() => api.createClient({
       links: [
         httpBatchLink({
           url: 'http://localhost:3000/trpc',
@@ -75,11 +75,11 @@ function App() {
   }, [session])
 
   return (
-    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+    <api.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />;
       </QueryClientProvider>
-    </trpc.Provider>
+    </api.Provider>
   )
 }
 export default withAuth(App);

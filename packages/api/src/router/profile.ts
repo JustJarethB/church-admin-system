@@ -14,6 +14,11 @@ export const profileRouter = router({
             }
         })
     }),
+    ofUser: privateProcedure.query(({ ctx }) => ctx.prisma.profiles.findMany({
+        where: {
+            userId: ctx.auth.user.id
+        }
+    })),
     create: privateProcedure.input(createSchema).mutation(({ ctx, input: { organisationId, userId } }) => {
         return ctx.prisma.profiles.create({
             data: {

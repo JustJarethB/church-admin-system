@@ -1,11 +1,10 @@
 import { PlusIcon } from "@heroicons/react/24/solid";
-import { useChurchFromProfile } from "@/api";
 import { Profile } from "api/src/profile";
 export type ProfileSelectionProps = {
-  profile: Profile | undefined;
+  profileId?: string
 };
-export const ProfileSelector = ({ profile }: ProfileSelectionProps) => {
-  const [church] = useChurchFromProfile(profile);
+export const ProfileSelector = ({ profileId }: ProfileSelectionProps) => {
+  const [church] = [{ logoUrl: "", displayName: "" }]
   if (!church)
     return (
       <div className="w-full flex justify-center items-center border-2 rounded border-neutral-light relative aspect-square">

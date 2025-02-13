@@ -1,25 +1,25 @@
 import { SignOut } from "@/SignOut";
+import api from "@/api";
 import { ProfileSelector, ProfileImage } from "@/components";
-import { useCurrentUser, useUserProfiles } from "@/api";
 
 export const ProfileSelection = () => {
-  const [user] = useCurrentUser();
-  const [profiles] = useUserProfiles();
-  if (!user) throw new Error("No user in authenticated zone");
+  const { data: user } = api.user.current.useQuery()
+  const { data: profiles } = api.profile.ofUser.useQuery();
+  console.log({ user, profiles });
   return (
     <div className="flex flex-col justify-between py-4">
       <ProfileImage
-        displayName={user.displayName ?? user.uid}
-        imageUrl={user.photoURL ?? undefined}
+        displayName={user?.email ?? user?.id ?? 'undefined'}
+        imageUrl={user?.avatarUrl ?? undefined}
       />
-      <p className="text-xl mx-auto">Welcome, {user.displayName ?? "User"}</p>
+      <p className="text-xl mx-auto">Welcome, {user?.fullName ?? "User"}</p>
       <div className="border rounded border-neutral-light grid gap-2 grid-cols-2">
         {profiles?.map((profile) => {
-          return <ProfileSelector key={profile.churchId} profile={profile} />;
+          return <ProfileSelector key={profile.organisationId} profileId={profile.id} />
         })}
-        <ProfileSelector profile={undefined} />
+        <ProfileSelector />
       </div>
       <SignOut />
     </div>
-  );
-};
+  )
+}
