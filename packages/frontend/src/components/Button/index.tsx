@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-type ButtonStyle = "primary" | "secondary";
+type ButtonStyle = "primary" | "secondary" | "success"
 export type ButtonProps = Omit<JSX.IntrinsicElements["button"], "style"> & {
   outline?: boolean;
   style?: ButtonStyle;
@@ -7,8 +7,8 @@ export type ButtonProps = Omit<JSX.IntrinsicElements["button"], "style"> & {
 
 const CLASS_BY_STYLE: Record<ButtonStyle, string> = {
   primary: "bg-primary hover:bg-primary-light border-primary",
-  secondary:
-    "bg-neutral-contrast hover:bg-neutral-contrast-dark text-neutral border-neutral-contrast [&.outline]:text-neutral-contrast",
+  secondary: "bg-neutral-contrast hover:bg-neutral-contrast-dark text-neutral border-neutral-contrast [&.outline]:text-neutral-contrast",
+  success: "bg-success hover:bg-success-dark border-success text-success-contrast",
 };
 
 export const Button = ({
