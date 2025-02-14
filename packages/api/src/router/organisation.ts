@@ -27,6 +27,7 @@ export const organisationRouter = router({
             data: {
                 organisationId: org.id,
                 userId: ctx.auth.user.id,
+                creatorId: ctx.auth.user.id
             }
         })
         return org
