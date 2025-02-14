@@ -1,9 +1,10 @@
-import { Bars3Icon, XCircleIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Logo } from "@/components";
 import { twMerge } from "tailwind-merge";
 import { createPortal } from "react-dom";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { SignOut } from "@/SignOut";
 
 export const Header = (props: JSX.IntrinsicElements["div"]) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,8 +30,8 @@ const SideMenu = ({ isOpen, handleClose }: SideMenuProps) => {
   if (!isOpen) return <></>;
   return createPortal(
     <div className="absolute inset-0 backdrop-blur-sm flex justify-end">
-      <div className="h-full w-3/4 bg-primary rounded-sm shadow-neutral-dark shadow-2xl">
-        <div className="h-12  flex p-2 justify-between">
+      <div className="h-full w-3/4 bg-primary rounded-sm shadow-neutral-dark shadow-2xl relative">
+        <div className="h-12 flex p-2 justify-between">
           <div></div>
           <XMarkIcon
             className="text-neutral-contrast hover:text-neutral-contrast-dark h-8"
@@ -47,6 +48,10 @@ const SideMenu = ({ isOpen, handleClose }: SideMenuProps) => {
           <Nav onClick={handleClose} to={"/profiles"}>
             Profiles
           </Nav>
+
+        </div>
+        <div className="bottom-0 absolute left-0 right-0 p-4">
+          <SignOut />
         </div>
       </div>
     </div>,
