@@ -3,7 +3,7 @@ model Organisations {
     name        String
     description String?
     creator     AppUsers   @relation(fields: [creatorId], references: [id])
-    creatorId   String     @unique @db.Uuid
+    creatorId   String     @db.Uuid
     createdAt   DateTime   @default(now())
     updatedAt   DateTime   @updatedAt
     Profiles    Profiles[]
