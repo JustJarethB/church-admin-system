@@ -3,7 +3,6 @@ import { router, privateProcedure } from './trpc';
 
 const createSchema = $.object({
     name: $.string(),
-    description: $.string()
 })
 
 export const organisationRouter = router({
@@ -18,7 +17,6 @@ export const organisationRouter = router({
         const org = await ctx.prisma.organisations.create({
             data: {
                 name: input.name,
-                description: input.description,
                 creatorId: ctx.auth.user.id
             }
         })

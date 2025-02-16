@@ -12,6 +12,7 @@ import { Error404 } from "./pages/404";
 import { useEffect, useState } from "react";
 import { api } from "./api";
 import AuthProvider, { useAuth } from './providers/AuthProvider';
+import { ModalCreateOrganisation } from './pages/ProfileSelection/ModalCreateOrganisation';
 
 
 const router = createBrowserRouter([
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
             element: <Church />,
             children: [{ path: "teams/:id", element: <TeamsModal /> }],
           },
-          { path: "/profiles", element: <ProfileSelection /> },
+          { path: "/profiles", element: <ProfileSelection />, children: [{ path: 'create', element: <ModalCreateOrganisation /> }] },
         ],
       },
     ],
@@ -77,7 +78,7 @@ function App() {
   return (
     <api.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />;
+        <RouterProvider router={router} />
       </QueryClientProvider>
     </api.Provider>
   )
