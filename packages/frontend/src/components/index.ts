@@ -8,3 +8,4 @@ export * from "./ProfileImage";
 export * from "./ProfileSelector";
 export * from "./ProfileSelector";
 export * from "./Section";
+export * from "./Suspended"
