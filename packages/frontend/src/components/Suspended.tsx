@@ -14,6 +14,6 @@ const Suspended = ({ children }: { children: React.ReactNode }) => <Suspense fal
     {children}
 </Suspense>
 
-export const withSuspense = (Component: React.ComponentType) => () => <Suspended>
-    <Component />
+export const withSuspense = <T extends JSX.IntrinsicAttributes>(Component: React.FC<T>) => (props: T) => <Suspended>
+    <Component {...props} />
 </Suspended>
