@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { api } from "./api";
 import AuthProvider, { useAuth } from './providers/AuthProvider';
 import { router } from './router';
+import { ErrorProvider } from './providers/ErrorProvider';
 
 
 export const withAuth = (Component: React.FC) => () => {
@@ -42,11 +43,13 @@ function App() {
   }, [session])
 
   return (
-    <api.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-    </api.Provider>
+    <ErrorProvider>
+      <api.Provider client={trpcClient} queryClient={queryClient}>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </api.Provider>
+    </ErrorProvider>
   )
 }
 export default withAuth(App);

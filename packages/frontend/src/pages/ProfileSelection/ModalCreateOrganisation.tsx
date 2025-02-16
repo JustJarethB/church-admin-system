@@ -1,10 +1,12 @@
 import api from "@/api";
 import { Button, Input } from "@/components";
 import { RoutedModal } from "@/components/Modal";
-import { createRef, FormEvent } from "react";
+import { useSetError } from "@/providers/ErrorProvider";
+import { createRef, FormEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const ModalCreateOrganisation = () => {
+    const setError = useSetError()
     const formRef = createRef<HTMLFormElement>();
     const navigate = useNavigate();
     const { mutate, isPending, isSuccess, isError, data, error } = api.organisation.create.useMutation()
@@ -15,7 +17,9 @@ export const ModalCreateOrganisation = () => {
         mutate({ name: formData["Organisation Name"] })
     }
     isSuccess && navigate(`/organisation/${data.id}/edit`)
-    console.log("error", error)
+    useEffect(() => {
+        if (error) setError(error.message)
+    }, [error])
 
     return (
         <RoutedModal title="Create Organisation">
