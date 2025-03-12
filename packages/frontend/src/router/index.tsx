@@ -4,6 +4,7 @@ import { ModalCreateOrganisation } from "@/pages/ProfileSelection/ModalCreateOrg
 import { RouterPage } from "./RouterPage";
 import { UnauthenticatedOnly } from "./UnauthenticatedOnly";
 import { AuthenticatedOnly } from "./AuthenticatedOnly";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         element: <RouterPage />,
         children: [
+          {
+            ErrorBoundary,
+            children: [
+
           { path: "/", element: <Navigate to={"/profiles"} /> },
           {
             path: "/church",
@@ -29,6 +34,8 @@ export const router = createBrowserRouter([
             children: [{ path: "teams/:id", element: <TeamsModal /> }],
           },
           { path: "/profiles", element: <ProfileSelection />, children: [{ path: 'create', element: <ModalCreateOrganisation /> }] },
+            ]
+          }
         ],
       },
     ],
