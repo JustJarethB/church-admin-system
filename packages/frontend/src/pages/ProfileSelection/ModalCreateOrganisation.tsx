@@ -16,7 +16,7 @@ export const ModalCreateOrganisation = () => {
         const formData = [...formRef.current.querySelectorAll('input')].reduce((acc, input) => ({ ...acc, [input.id]: input.value }), {} as Record<string, string>)
         mutate({ name: formData["Organisation Name"] })
     }
-    isSuccess && navigate(`/organisation/${data.id}/edit`)
+    isSuccess && navigate(`/organisations/${data.id}/edit`)
     useEffect(() => {
         if (error) setError(error.message)
     }, [error])

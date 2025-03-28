@@ -4,6 +4,11 @@ import { router, privateProcedure } from './trpc';
 const createSchema = $.object({
     name: $.string(),
 })
+const updateSchema = $.object({
+    id: $.string(),
+    name: $.optional($.string()),
+    description: $.optional($.string()),
+})
 
 export const organisationRouter = router({
     ofId: privateProcedure.input($.string()).query(({ ctx, input }) => {
@@ -29,6 +34,13 @@ export const organisationRouter = router({
             }
         })
         return org
-    })
+    }),
+    update: privateProcedure.input(updateSchema).mutation(async ({ ctx, input }) =>
+        ctx.prisma.organisations.update({
+            where: {
+                id: input.id
+            }, data: input
+        })
+    )
 
 })

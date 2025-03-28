@@ -23,7 +23,7 @@ export const ProfileSelection = () => {
     <div className="flex flex-col justify-between py-4">
       <div className="border rounded border-neutral-light grid gap-2 grid-cols-2">
         {profiles?.map((profile) => {
-          return <ProfileSelector key={profile.organisationId} profileId={profile.id} />
+          return <ProfileSelector key={profile.organisationId} profileId={profile.organisationId} />
         })}
         <ProfileSelector />
       </div>
